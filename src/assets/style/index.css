@@ -62,6 +62,15 @@ h1{
 .main-nav-item {
     text-decoration: none;
     margin-right: 0.5rem;
+
+    &:not(:last-child){
+        margin-right: 1rem;
+    }
+
+    & svg{
+        margin-right: 10px;
+    }
+
 }
 
 .main-nav-item:hover {
