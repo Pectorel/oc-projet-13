@@ -4,6 +4,8 @@
 
     --btn-color: #6559F5;
     --btn-border-color: #B3B3F0;
+    --btn-disabled-color: #B8C4CE;
+    --btn-disabled-bg-color: #F0F0F0;
 }
 
 .form-wrapper{
@@ -48,5 +50,13 @@
     &:hover{
         background-color: var(--btn-border-color);
         color: #fff;
+    }
+
+    &:disabled{
+        background-color: var(--btn-disabled-bg-color);
+        border-color: var(--btn-disabled-bg-color);
+        cursor: default;
+        color: var(--btn-disabled-color);
+        opacity: .75;
     }
 }

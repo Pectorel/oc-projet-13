@@ -52,14 +52,14 @@ const router = createBrowserRouter([
         path: "/logout",
       },
       {
-        path: "/profile/:id",
+        path: "/profile",
         element: <Profile />,
       },
       {
-        path: "/profile/:id/edit",
+        path: "/profile/edit",
       },
       {
-        path: "/profile/:id/transactions",
+        path: "/profile/transactions",
       },
     ],
   },
