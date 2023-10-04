@@ -1,0 +1,33 @@
+.edit-btn{
+    margin-top: .75rem;
+}
+
+.edit-form{
+    display: none;
+    margin-top: 1rem;
+
+    & .form-section{
+        display: flex;
+        justify-content: center;
+
+        &:not(:last-child){
+            margin-bottom: .75rem;
+        }
+
+        & input:not(:first-child){
+            margin-left: 1rem;
+        }
+
+
+        & button{
+            width: 125px;
+
+            &:not(:first-child){
+                margin-left: 1rem;
+            }
+
+        }
+
+    }
+
+}

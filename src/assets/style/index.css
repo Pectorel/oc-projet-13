@@ -8,6 +8,10 @@ html {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+
+    & * {
+        font-family: inherit;
+    }
 }
 
 body {
@@ -238,29 +242,33 @@ h1{
     border: 1px solid black;
     background-color: #fff;
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
     flex-direction: column;
     padding: 1.5rem;
     box-sizing: border-box;
     text-align: left;
-    margin-bottom: 2rem;
+    font-weight: 500;
+
+    & * {
+        font-weight: inherit;
+    }
 }
 
 .account-amount {
     margin: 0;
     font-size: 2.5rem;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .account-amount-description {
     margin: 0;
+    font-size: .925rem;
 }
 
 .account-title {
     margin: 0;
     padding: 0;
     font-size: 1rem;
-    font-weight: normal;
 }
 
 .account-content-wrapper {
@@ -285,7 +293,7 @@ h1{
 }
 
 .header {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 
     & h1{
         line-height: 1.30;

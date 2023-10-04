@@ -2,8 +2,9 @@
     --input-field-color: #B8C4CE;
     --input-field-border-color: var(--input-field-color);
 
-    --btn-color: #6559F5;
+    --btn-color: #786fef;
     --btn-border-color: #B3B3F0;
+    --btn-bg-color: #fff;
     --btn-disabled-color: #B8C4CE;
     --btn-disabled-bg-color: #F0F0F0;
 }
@@ -24,11 +25,11 @@
 }
 
 .input-field{
-    padding: .85rem 1rem;
+    padding: .5rem 1rem;
     border-radius: 5px;
     border: 2px solid var(--input-field-border-color);
     color: var(--input-field-color);
-    font-size: .925rem;
+    font-size: 1rem;
 
     &::placeholder{
         color: var(--input-field-color);
@@ -39,13 +40,15 @@
 
 .btn{
     text-align: center;
-    padding: .85rem 1rem;
+    padding: .5rem 1rem;
     border-radius: 5px;
     border: 2px solid var(--btn-border-color);
     color: var(--btn-color);
+    background: var(--btn-bg-color);
     cursor: pointer;
     transition: all .2s ease-in;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1rem;
 
     &:hover{
         background-color: var(--btn-border-color);
