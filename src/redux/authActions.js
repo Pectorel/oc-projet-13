@@ -3,6 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const apiBaseURL = "http://localhost:3001/api/v1";
 
+export const editUser = createAsyncThunk("auth/edit");
+
 export const userLogin = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
