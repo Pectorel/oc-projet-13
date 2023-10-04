@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { userLogin } from "./authActions";
+import { userEdit } from "./authActions";
 
 // initialize userToken from local storage
 const userToken = localStorage.getItem("userToken")
@@ -38,6 +39,20 @@ export const authSlice = createSlice({
         state.userToken = payload.body.token;
       })
       .addCase(userLogin.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(userEdit.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userEdit.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+        state.userInfo.firstName = payload.firstName;
+        state.userInfo.lastName = payload.lastName;
+      })
+      .addCase(userEdit.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });

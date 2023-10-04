@@ -3,7 +3,32 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const apiBaseURL = "http://localhost:3001/api/v1";
 
-export const editUser = createAsyncThunk("auth/edit");
+export const userEdit = createAsyncThunk(
+  "auth/edit",
+  async ({ firstName, lastName }, { rejectWithValue, getState, state }) => {
+    try {
+      const headers = {
+        headers: {
+          Authorization: `Bearer ${getState().auth.userToken}`,
+        },
+      };
+
+      const userInfos = await axios.put(
+        `${apiBaseURL}/user/profile`,
+        { firstName, lastName },
+        headers,
+      );
+
+      return { firstName, lastName };
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  },
+);
 
 export const userLogin = createAsyncThunk(
   "auth/login",

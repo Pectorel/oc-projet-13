@@ -1,17 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BankAccountLine from "../components/BankAccountLine";
 import formStyle from "../assets/style/form.module.css";
 import style from "../assets/style/profile.module.css";
 import { useForm } from "react-hook-form";
 import { useRef } from "react";
+import { userEdit } from "../redux/authActions";
 
 function Profile() {
   const { register, handleSubmit } = useForm();
-  const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo, loading } = useSelector((state) => state.auth);
 
   const editBtn = useRef(null);
   const userName = useRef(null);
   const editForm = useRef(null);
+
+  const dispatch = useDispatch();
 
   const toggleEditForm = (show = true) => {
     if (show) {
@@ -25,8 +28,9 @@ function Profile() {
     }
   };
 
-  const editUser = (data) => {
+  const editUser = async (data) => {
     console.log(data);
+    await dispatch(userEdit(data));
     toggleEditForm(false);
   };
 
@@ -74,13 +78,18 @@ function Profile() {
           </div>
 
           <div className={style["form-section"]}>
-            <button className={formStyle["btn"]} type="submit">
+            <button
+              className={formStyle["btn"]}
+              type="submit"
+              disabled={loading}
+            >
               Save
             </button>
             <button
               className={formStyle["btn"]}
               type="button"
               onClick={cancelForm}
+              disabled={loading}
             >
               Cancel
             </button>
