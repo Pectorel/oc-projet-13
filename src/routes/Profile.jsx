@@ -3,8 +3,9 @@ import BankAccountLine from "../components/BankAccountLine";
 import formStyle from "../assets/style/form.module.css";
 import style from "../assets/style/profile.module.css";
 import { useForm } from "react-hook-form";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { userEdit } from "../redux/authActions";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const { register, handleSubmit } = useForm();

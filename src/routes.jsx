@@ -1,10 +1,11 @@
-import { createBrowserRouter, json } from "react-router-dom";
+import { createBrowserRouter, json, redirect } from "react-router-dom";
 import Layout from "./components/layout/Layout.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import Home from "./routes/Home.jsx";
 import Profile from "./routes/Profile.jsx";
 import Login from "./routes/Login.jsx";
 import axios from "axios";
+import store from "./redux/store.js";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,33 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+        loader: async () => {
+          const auth = store.getState().auth;
+          console.log(auth);
+
+          if (
+            auth.userInfo !== null &&
+            typeof auth.userInfo === "object" &&
+            auth.userToken !== null
+          ) {
+            // Check if token is correct
+            const headers = {
+              headers: {
+                Authorization: `Bearer ${auth.userToken}`,
+              },
+            };
+
+            const userInfos = await axios.post(
+              `http://localhost:3001/api/v1/user/profile`,
+              {},
+              headers,
+            );
+
+            if (userInfos.data.status === 200) return true;
+          }
+
+          return redirect("/login");
+        },
       },
       {
         path: "/profile/edit",
