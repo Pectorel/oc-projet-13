@@ -65,13 +65,14 @@ export const userLogin = createAsyncThunk(
         }
       }
 
-      //localStorage.setItem("userToken", res.data.body.token);
-
       return res.data;
     } catch (error) {
       if (error.response && error.response.data.message) {
+        console.dir(error);
         return rejectWithValue(error.response.data.message);
       } else {
+        console.log("No Message");
+        console.dir(error);
         return rejectWithValue(error.message);
       }
     }

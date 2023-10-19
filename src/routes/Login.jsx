@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
+import style from "../assets/style/login.module.css";
 import formStyle from "../assets/style/form.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../redux/authActions.js";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import NotifBlock from "../components/NotifBlock.jsx";
 
 function Login() {
   const { register, handleSubmit } = useForm();
@@ -20,38 +22,47 @@ function Login() {
   };
 
   useEffect(() => {
-    console.log("Works");
     if (success) {
       nav("/profile");
     }
   }, [nav, userInfo]);
 
   return (
-    <section className={formStyle["form-wrapper"]}>
-      <form
-        className={formStyle["form-flex"]}
-        onSubmit={handleSubmit(submitForm)}
-      >
-        <input
-          className={formStyle["input-field"]}
-          type="text"
-          name={"email"}
-          placeholder={"Email"}
-          {...register("email")}
-          required
+    <section className={` ${style.content}`}>
+      {error != null ? (
+        <NotifBlock
+          className={style.notification}
+          type={"error"}
+          message={error}
         />
-        <input
-          className={formStyle["input-field"]}
-          type="password"
-          name={"password"}
-          placeholder={"Password"}
-          {...register("password")}
-          required
-        />
-        <button className={formStyle.btn} type="submit" disabled={loading}>
-          Login
-        </button>
-      </form>
+      ) : null}
+
+      <div className={formStyle["form-wrapper"]}>
+        <form
+          className={`${formStyle["form-flex"]}`}
+          onSubmit={handleSubmit(submitForm)}
+        >
+          <input
+            className={formStyle["input-field"]}
+            type="text"
+            name={"email"}
+            placeholder={"Email"}
+            {...register("email")}
+            required
+          />
+          <input
+            className={formStyle["input-field"]}
+            type="password"
+            name={"password"}
+            placeholder={"Password"}
+            {...register("password")}
+            required
+          />
+          <button className={formStyle.btn} type="submit" disabled={loading}>
+            Login
+          </button>
+        </form>
+      </div>
     </section>
   );
 }

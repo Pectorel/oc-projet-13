@@ -1,0 +1,35 @@
+.notif{
+    padding: .75rem 1rem;
+    background: #4daecc;
+    color: #fff;
+    text-align: center;
+    font-size: .875rem;
+    position: relative;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity .4s ease-in;
+
+    &.open{
+        opacity: 1
+    }
+
+    &.closed{
+        display: none;
+    }
+
+    &.error{
+        background: #CC5D4E;
+    }
+
+    &.success{
+        background: #4DCC8E;
+    }
+
+    & .close{
+        position: absolute;
+        top: .25rem;
+        right: .5rem;
+        cursor: pointer;
+    }
+
+}

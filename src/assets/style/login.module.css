@@ -1,0 +1,13 @@
+.content{
+    padding: 4rem 0;
+    background: #eeeeee;
+    width: 100%;
+    position: relative;
+}
+
+.notification{
+    min-width: 300px;
+    max-width: 300px;
+    margin: 0 auto 2rem;
+
+}

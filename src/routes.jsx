@@ -57,7 +57,7 @@ const router = createBrowserRouter([
         element: <Profile />,
         loader: async () => {
           const auth = store.getState().auth;
-          console.log(auth);
+          // console.log(auth);
 
           if (
             auth.userInfo !== null &&
@@ -82,9 +82,6 @@ const router = createBrowserRouter([
 
           return redirect("/login");
         },
-      },
-      {
-        path: "/profile/edit",
       },
       {
         path: "/profile/transactions",
