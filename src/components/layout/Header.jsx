@@ -49,7 +49,7 @@ function Header() {
           <NavLink className="main-nav-logo" to={`/`}>
             <img
               className="main-nav-logo-image"
-              src="/public/img/argentBankLogo.png"
+              src="/img/argentBankLogo.png"
               alt="Logo Argent Bank"
             />
           </NavLink>

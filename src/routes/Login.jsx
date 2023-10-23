@@ -4,10 +4,12 @@ import formStyle from "../assets/style/form.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../redux/authActions.js";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NotifBlock from "../components/NotifBlock.jsx";
 
 function Login() {
+  const [show_error, setShowError] = useState(false);
+
   const { register, handleSubmit } = useForm();
 
   const { loading, userInfo, error, success } = useSelector(
@@ -16,9 +18,11 @@ function Login() {
   const dispatch = useDispatch();
 
   const nav = useNavigate();
-  const submitForm = (data) => {
+
+  const submitForm = async (data) => {
     data.email = data.email.toLowerCase();
-    dispatch(userLogin(data));
+    await dispatch(userLogin(data));
+    setShowError(true);
   };
 
   useEffect(() => {
@@ -27,9 +31,11 @@ function Login() {
     }
   }, [nav, userInfo]);
 
+  console.log(show_error);
+
   return (
     <section className={` ${style.content}`}>
-      {error != null ? (
+      {error != null && show_error ? (
         <NotifBlock
           className={style.notification}
           type={"error"}
@@ -44,7 +50,7 @@ function Login() {
         >
           <input
             className={formStyle["input-field"]}
-            type="text"
+            type="email"
             name={"email"}
             placeholder={"Email"}
             {...register("email")}
