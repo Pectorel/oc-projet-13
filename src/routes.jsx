@@ -6,6 +6,8 @@ import Profile from "./routes/Profile.jsx";
 import Login from "./routes/Login.jsx";
 import axios from "axios";
 import store from "./redux/store.js";
+import { loginAction } from "./utilities/RoutesActions.js";
+import { checkLoggedIn } from "./utilities/RoutesLoaders.js";
 
 const router = createBrowserRouter([
   {
@@ -20,28 +22,18 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+        loader: async () => {
+          // If already connected, then go to profile page
+          const auth = store.getState().auth;
+          if (await checkLoggedIn(auth)) return redirect("/profile");
+          return true;
+        },
         action: async ({ request, params }) => {
           switch (request.method) {
             case "POST": {
+              // Check credentials for login
               const formData = await request.formData();
-
-              let payload = {
-                email: formData.get("email"),
-                password: formData.get("password"),
-              };
-
-              const res = await axios.post(
-                "http://localhost:3001/api/v1/user/login",
-                payload,
-              );
-
-              if (res.status === 200 && res.data.status === 200) {
-                const data = res.data;
-
-                const token = data.body.token;
-
-                return true;
-              }
+              return await loginAction(formData);
             }
           }
           throw new json({}, 404);
@@ -54,29 +46,9 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <Profile />,
         loader: async () => {
+          // If not logged in, then redirect to login page
           const auth = store.getState().auth;
-
-          if (
-            auth.userInfo !== null &&
-            typeof auth.userInfo === "object" &&
-            auth.userToken !== null
-          ) {
-            // Check if token is correct
-            const headers = {
-              headers: {
-                Authorization: `Bearer ${auth.userToken}`,
-              },
-            };
-
-            const userInfos = await axios.post(
-              `http://localhost:3001/api/v1/user/profile`,
-              {},
-              headers,
-            );
-
-            if (userInfos.data.status === 200) return true;
-          }
-
+          if (await checkLoggedIn(auth)) return true;
           return redirect("/login");
         },
       },
