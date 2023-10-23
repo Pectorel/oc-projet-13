@@ -30,7 +30,6 @@ function Profile() {
   };
 
   const editUser = async (data) => {
-    console.log(data);
     await dispatch(userEdit(data));
     toggleEditForm(false);
   };

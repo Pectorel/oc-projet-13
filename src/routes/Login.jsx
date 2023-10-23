@@ -31,8 +31,6 @@ function Login() {
     }
   }, [nav, userInfo]);
 
-  console.log(show_error);
-
   return (
     <section className={` ${style.content}`}>
       {error != null && show_error ? (

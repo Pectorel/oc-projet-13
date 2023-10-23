@@ -35,8 +35,6 @@ const router = createBrowserRouter([
                 payload,
               );
 
-              console.log(res.data);
-
               if (res.status === 200 && res.data.status === 200) {
                 const data = res.data;
 
@@ -57,7 +55,6 @@ const router = createBrowserRouter([
         element: <Profile />,
         loader: async () => {
           const auth = store.getState().auth;
-          // console.log(auth);
 
           if (
             auth.userInfo !== null &&
