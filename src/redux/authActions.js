@@ -5,7 +5,7 @@ const apiBaseURL = "http://localhost:3001/api/v1";
 
 export const userEdit = createAsyncThunk(
   "auth/edit",
-  async ({ firstName, lastName }, { rejectWithValue, getState, state }) => {
+  async ({ firstName, lastName }, { rejectWithValue, getState }) => {
     try {
       const headers = {
         headers: {
