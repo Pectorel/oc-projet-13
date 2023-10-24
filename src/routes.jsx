@@ -4,9 +4,7 @@ import ErrorPage from "./components/ErrorPage.jsx";
 import Home from "./routes/Home.jsx";
 import Profile from "./routes/Profile.jsx";
 import Login from "./routes/Login.jsx";
-import axios from "axios";
 import store from "./redux/store.js";
-import { loginAction } from "./utilities/RoutesActions.js";
 import { checkLoggedIn } from "./utilities/RoutesLoaders.js";
 
 const router = createBrowserRouter([
@@ -27,16 +25,6 @@ const router = createBrowserRouter([
           const auth = store.getState().auth;
           if (await checkLoggedIn(auth)) return redirect("/profile");
           return true;
-        },
-        action: async ({ request, params }) => {
-          switch (request.method) {
-            case "POST": {
-              // Check credentials for login
-              const formData = await request.formData();
-              return await loginAction(formData);
-            }
-          }
-          throw new json({}, 404);
         },
       },
       {
