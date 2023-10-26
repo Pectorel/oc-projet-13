@@ -3,9 +3,8 @@ import BankAccountLine from "../components/BankAccountLine";
 import formStyle from "../assets/style/form.module.css";
 import style from "../assets/style/profile.module.css";
 import { useForm } from "react-hook-form";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { userEdit } from "../redux/authActions";
-import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const { register, handleSubmit } = useForm();
@@ -24,7 +23,7 @@ function Profile() {
       editForm.current.style.display = "block";
     } else {
       editBtn.current.style.display = "inline";
-      userName.current.style.display = "inline";
+      userName.current.style.display = "block";
       editForm.current.style.display = "none";
     }
   };
@@ -39,9 +38,9 @@ function Profile() {
   };
 
   return (
-    <section id="profile">
+    <section id={`${style["profile"]}`}>
       <div className="header">
-        <h1>
+        <h1 className={`${style["profile-header"]}`}>
           Welcome back
           <br />
           <span
@@ -51,7 +50,7 @@ function Profile() {
         </h1>
         <button
           ref={editBtn}
-          className={`${formStyle["btn"]} ${style["edit-btn"]}`}
+          className={`${style["edit-btn"]}`}
           onClick={toggleEditForm}
         >
           Edit Name
@@ -102,7 +101,7 @@ function Profile() {
       <BankAccountLine label="Argent Bank Checking (x8349)" amount="2,082.79" />
       <BankAccountLine label="Argent Bank Savings (x6712)" amount="10,928.42" />
       <BankAccountLine
-        label="Argent Bank Checking (x8349)"
+        label="Argent Bank Credit Card (x8349)"
         amount="184.30"
         balanceLabel={"Current Balance"}
       />
