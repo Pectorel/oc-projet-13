@@ -1,8 +1,10 @@
 .content{
-    padding: 4rem 0;
-    background: #eeeeee;
+    padding: 3rem 0;
+    background: #12002B;
     width: 100%;
     position: relative;
+    height: calc(100vh - (64px + 82px));
+    box-sizing: border-box;
 }
 
 .notification{
@@ -10,4 +12,17 @@
     max-width: 300px;
     margin: 0 auto 2rem;
 
+}
+
+.login-wrapper{
+    background: #fff;
+    padding: 2rem;
+    text-align: left;
+    max-width: 300px;
+    width: 100%;
+    box-sizing: border-box;
+
+    & header{
+        text-align: center;
+    }
 }

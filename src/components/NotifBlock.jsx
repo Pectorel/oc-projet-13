@@ -13,7 +13,6 @@ NotifBlock.propTypes = {
 
 function NotifBlock({ type = "info", message, className }) {
   const notif_block = useRef(null);
-  const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const closeNotif = () => {

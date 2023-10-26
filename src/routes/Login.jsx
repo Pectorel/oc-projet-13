@@ -6,6 +6,8 @@ import { userLogin } from "../redux/authActions.js";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NotifBlock from "../components/NotifBlock.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
   const [show_error, setShowError] = useState(false);
@@ -33,37 +35,55 @@ function Login() {
 
   return (
     <section className={` ${style.content}`}>
-      {error != null && show_error ? (
-        <NotifBlock
-          className={style.notification}
-          type={"error"}
-          message={error}
-        />
-      ) : null}
+      <div className={`${formStyle["form-wrapper"]} ${style["login-wrapper"]}`}>
+        <header>
+          <FontAwesomeIcon icon={faUserCircle} />
+          <h2>Sign In</h2>
+        </header>
 
-      <div className={formStyle["form-wrapper"]}>
+        {error != null && show_error ? (
+          <NotifBlock
+            className={style.notification}
+            type={"error"}
+            message={error}
+          />
+        ) : null}
+
         <form
           className={`${formStyle["form-flex"]}`}
           onSubmit={handleSubmit(submitForm)}
         >
-          <input
-            className={formStyle["input-field"]}
-            type="email"
-            name={"email"}
-            placeholder={"Email"}
-            {...register("email")}
-            required
-          />
-          <input
-            className={formStyle["input-field"]}
-            type="password"
-            name={"password"}
-            placeholder={"Password"}
-            {...register("password")}
-            required
-          />
+          <label className={`${formStyle["input-label"]}`}>
+            Username
+            <br />
+            <input
+              className={formStyle["input-field"]}
+              type="email"
+              name={"email"}
+              {...register("email")}
+              required
+            />
+          </label>
+
+          <label className={`${formStyle["input-label"]}`}>
+            Password
+            <br />
+            <input
+              className={formStyle["input-field"]}
+              type="password"
+              name={"password"}
+              {...register("password")}
+              required
+            />
+          </label>
+
+          <label className={`${formStyle["input-checkbox"]}`}>
+            <input type="checkbox" />
+            Remember me
+          </label>
+
           <button className={formStyle.btn} type="submit" disabled={loading}>
-            Login
+            Sign In
           </button>
         </form>
       </div>

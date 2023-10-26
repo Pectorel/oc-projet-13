@@ -1,10 +1,12 @@
 :root{
-    --input-field-color: #B8C4CE;
-    --input-field-border-color: var(--input-field-color);
+    --input-field-color: #000;
+    --input-field-border-color: #767676;
 
-    --btn-color: #786fef;
-    --btn-border-color: #B3B3F0;
-    --btn-bg-color: #fff;
+    --label-color: #2c3e50;
+
+    --btn-color: #fff;
+    --btn-border-color: transparent;
+    --btn-bg-color: #00BC77;
     --btn-disabled-color: #B8C4CE;
     --btn-disabled-bg-color: #F0F0F0;
 }
@@ -22,13 +24,20 @@
     flex-direction: column;
 }
 
+.input-label{
+    color: var(--label-color);
+    font-weight: 700;
+}
+
 .input-field{
-    padding: .5rem 1rem;
-    border-radius: 5px;
-    border: 2px solid var(--input-field-border-color);
+    padding: 5px;
+    border: 1px solid var(--input-field-border-color);
+    border-style: inset;
     color: var(--input-field-color);
     font-size: 1rem;
     margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 
 
     &::placeholder{
@@ -38,22 +47,21 @@
 
 }
 
+.input-checkbox{
+    margin-bottom: 1rem;
+}
+
 .btn{
     text-align: center;
     padding: .5rem 1rem;
-    border-radius: 5px;
     border: 2px solid var(--btn-border-color);
     color: var(--btn-color);
     background: var(--btn-bg-color);
     cursor: pointer;
     transition: all .2s ease-in;
     font-weight: 600;
-    font-size: 1rem;
-
-    &:hover{
-        background-color: var(--btn-border-color);
-        color: #fff;
-    }
+    font-size: 1.1rem;
+    text-decoration: underline;
 
     &:disabled{
         background-color: var(--btn-disabled-bg-color);

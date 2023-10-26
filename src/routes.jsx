@@ -28,9 +28,6 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/logout",
-      },
-      {
         path: "/profile",
         element: <Profile />,
         loader: async () => {
